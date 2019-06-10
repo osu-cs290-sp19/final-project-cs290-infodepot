@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS info_depot_item (
     idi_id CHAR(16) NOT NULL,
     idi_u_id CHAR(16) NOT NULL,
     idi_title VARCHAR(256) NOT NULL,
-    idi_details TEXT NOT NULL,
+    idi_details LONGTEXT NOT NULL,
     idi_idcr_id INT NOT NULL,
     idi_date_created DATETIME NOT NULL,
     idi_date_updated DATETIME,
@@ -52,10 +52,17 @@ CREATE TABLE IF NOT EXISTS info_depot_comment (
     FOREIGN KEY (idc_idi_id) REFERENCES info_depot_item (idi_id)
 );
 
-CREATE TABLE IF NOT EXISTS info_depot_found_helpful (
-    idfh_u_id CHAR(16) NOT NULL,
-    idfh_idi_id CHAR(16) NOT NULL,
+CREATE TABLE IF NOT EXISTS info_depot_rating (
+    idr_u_id CHAR(16) NOT NULL,
+    idr_idi_id CHAR(16) NOT NULL,
+	idr_value TEXT NOT NULL,
 
+
+    PRIMARY KEY (idr_u_id, idr_idi_id),
+    FOREIGN KEY (idr_u_id) REFERENCES user (u_id),
+    FOREIGN KEY (idr_idi_id) REFERENCES info_depot_item (idi_id)
+);
+=======
     PRIMARY KEY (idfh_u_id, idfh_idi_id),
     FOREIGN KEY (idfh_u_id) REFERENCES user (u_id),
     FOREIGN KEY (idfh_idi_id) REFERENCES info_depot_item (idi_id)
@@ -69,3 +76,4 @@ CREATE TABLE IF NOT EXISTS info_depot_found_unhelpful (
     FOREIGN KEY (idfu_u_id) REFERENCES user (u_id),
     FOREIGN KEY (idfu_idi_id) REFERENCES info_depot_item (idi_id)
 );
+

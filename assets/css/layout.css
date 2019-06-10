@@ -1,0 +1,29 @@
+/*
+CSS Styling for Structural Layout of Website Content
+Project Showcase
+Oregon State University
+*/
+html, body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+}
+
+main {
+    padding-top: 10px;
+}
+
+main.extra-padding {
+    padding-top: 90px;
+}
+
+@media only screen and (max-width: 576px) {
+    main.extra-padding {
+        padding-top: 68px;
+    }
+}
